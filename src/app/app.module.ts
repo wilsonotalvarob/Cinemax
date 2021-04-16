@@ -3,10 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LandingPageComponent } from './Landingpage/landing-page.component';
+import { NavbarSocialComponent } from './Landingpage/navbar-social/navbar-social.component';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LandingPageComponent,
+    NavbarSocialComponent
   ],
   imports: [
     BrowserModule,
