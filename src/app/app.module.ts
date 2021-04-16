@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './Landingpage/landing-page.component';
 import { NavbarSocialComponent } from './Landingpage/navbar-social/navbar-social.component';
+import { NavbarMenuComponent } from './Landingpage/navbar-menu/navbar-menu.component';
 
 
 
@@ -12,7 +13,8 @@ import { NavbarSocialComponent } from './Landingpage/navbar-social/navbar-social
   declarations: [
     AppComponent,
     LandingPageComponent,
-    NavbarSocialComponent
+    NavbarSocialComponent,
+    NavbarMenuComponent
   ],
   imports: [
     BrowserModule,
