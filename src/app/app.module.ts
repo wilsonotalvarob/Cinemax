@@ -8,6 +8,7 @@ import { NavbarSocialComponent } from './Landingpage/navbar-social/navbar-social
 import { NavbarMenuComponent } from './Landingpage/navbar-menu/navbar-menu.component';
 import { MoviesFilterComponent } from './Landingpage/movies-filter/movies-filter.component';
 import { SlidesComponent } from './Landingpage/slides/slides.component';
+import { WeeklyBilboardsComponent } from './Landingpage/weekly-bilboards/weekly-bilboards.component';
 
 
 
@@ -18,7 +19,8 @@ import { SlidesComponent } from './Landingpage/slides/slides.component';
     NavbarSocialComponent,
     NavbarMenuComponent,
     MoviesFilterComponent,
-    SlidesComponent
+    SlidesComponent,
+    WeeklyBilboardsComponent
   ],
   imports: [
     BrowserModule,
