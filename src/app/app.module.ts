@@ -7,6 +7,7 @@ import { LandingPageComponent } from './Landingpage/landing-page.component';
 import { NavbarSocialComponent } from './Landingpage/navbar-social/navbar-social.component';
 import { NavbarMenuComponent } from './Landingpage/navbar-menu/navbar-menu.component';
 import { MoviesFilterComponent } from './Landingpage/movies-filter/movies-filter.component';
+import { SlidesComponent } from './Landingpage/slides/slides.component';
 
 
 
@@ -16,7 +17,8 @@ import { MoviesFilterComponent } from './Landingpage/movies-filter/movies-filter
     LandingPageComponent,
     NavbarSocialComponent,
     NavbarMenuComponent,
-    MoviesFilterComponent
+    MoviesFilterComponent,
+    SlidesComponent
   ],
   imports: [
     BrowserModule,
