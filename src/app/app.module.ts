@@ -9,6 +9,7 @@ import { NavbarMenuComponent } from './Landingpage/navbar-menu/navbar-menu.compo
 import { MoviesFilterComponent } from './Landingpage/movies-filter/movies-filter.component';
 import { SlidesComponent } from './Landingpage/slides/slides.component';
 import { WeeklyBilboardsComponent } from './Landingpage/weekly-bilboards/weekly-bilboards.component';
+import { PremieresComponent } from './Landingpage/premieres/premieres.component';
 
 
 
@@ -20,7 +21,8 @@ import { WeeklyBilboardsComponent } from './Landingpage/weekly-bilboards/weekly-
     NavbarMenuComponent,
     MoviesFilterComponent,
     SlidesComponent,
-    WeeklyBilboardsComponent
+    WeeklyBilboardsComponent,
+    PremieresComponent
   ],
   imports: [
     BrowserModule,
