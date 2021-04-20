@@ -11,6 +11,7 @@ import { SlidesComponent } from './Landingpage/slides/slides.component';
 import { WeeklyBilboardsComponent } from './Landingpage/weekly-bilboards/weekly-bilboards.component';
 import { PremieresComponent } from './Landingpage/premieres/premieres.component';
 import { CarouselComponent } from './Landingpage/carousel/carousel.component';
+import { FooterComponent } from './Landingpage/footer/footer.component';
 
 
 
@@ -24,7 +25,8 @@ import { CarouselComponent } from './Landingpage/carousel/carousel.component';
     SlidesComponent,
     WeeklyBilboardsComponent,
     PremieresComponent,
-    CarouselComponent
+    CarouselComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
