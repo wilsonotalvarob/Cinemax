@@ -10,6 +10,7 @@ import { MoviesFilterComponent } from './Landingpage/movies-filter/movies-filter
 import { SlidesComponent } from './Landingpage/slides/slides.component';
 import { WeeklyBilboardsComponent } from './Landingpage/weekly-bilboards/weekly-bilboards.component';
 import { PremieresComponent } from './Landingpage/premieres/premieres.component';
+import { CarouselComponent } from './Landingpage/carousel/carousel.component';
 
 
 
@@ -22,7 +23,8 @@ import { PremieresComponent } from './Landingpage/premieres/premieres.component'
     MoviesFilterComponent,
     SlidesComponent,
     WeeklyBilboardsComponent,
-    PremieresComponent
+    PremieresComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
