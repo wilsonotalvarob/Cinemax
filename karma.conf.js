@@ -12,6 +12,10 @@ module.exports = function (config) {
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
+    files:[
+      "./node_modules/jquery/dist/jquery.min.js",
+      "./node_modules/materialize-css/dist/js/materialize.min.js"
+    ],
     client: {
       jasmine: {
         // you can add configuration options for Jasmine here
@@ -38,7 +42,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false,
+    singleRun: true,
     restartOnFileChange: true
   });
 };
