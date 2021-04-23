@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API: 'https://cinemax-6bd7e-default-rtdb.firebaseio.com/'
 };
 
 /*
