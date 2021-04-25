@@ -7,25 +7,33 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { SocialNetwork } from './social-network';
 import { of } from 'rxjs'
 
-fdescribe('NavbarSocialComponent', () => {
+describe('NavbarSocialComponent', () => {
   let component: NavbarSocialComponent;
   let fixture: ComponentFixture<NavbarSocialComponent>;
   let service : LandingPageService
 
   let mockResponse : SocialNetwork[] = [
     {
+      "clase": "fab fa-facebook-f",
+      "estado": true,
       "nombre": "Facebook",
-      "url": "https://www.facebook.com/wilson.otalvaro"
+      "url": "https://www.facebook.com/wilson.otalvaro/"
       },
       {
+      "clase": "fab fa-twitter",
+      "estado": true,
       "nombre": "Twitter",
       "url": "https://twitter.com/"
       },
       {
+      "clase": "fab fa-youtube",
+      "estado": true,
       "nombre": "youtube",
       "url": "https://www.youtube.com/channel/UCGbYqevVy0itrqidAnRnEKw"
       },
       {
+      "clase": "fab fa-instagram",
+      "estado": true,
       "nombre": "Instagram",
       "url": "https://www.instagram.com/otalvaro.wilson/"
       }
@@ -61,5 +69,12 @@ fdescribe('NavbarSocialComponent', () => {
 
     component.ngOnInit()
     expect(component.SocialNetworks).toEqual(mockResponse)
+  })
+  it('Debe llamar getSocialNetworks en el ngOnit()', () => {
+    spyOn(component, 'getSocialNetworks').and.callThrough()
+    spyOn(service, 'getSocialNetworks').and.returnValue(of(mockResponse))
+
+    component.ngOnInit()
+    expect(component.getSocialNetworks).toHaveBeenCalled()
   })
 });
