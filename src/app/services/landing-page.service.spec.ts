@@ -1,15 +1,41 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Movie } from 'src/app/models/movie.model';
-import { LandingPageService } from 'src/app/services/landing-page.service';
-import { of } from 'rxjs';
-import { PremieresComponent } from './premieres.component';
+import { getTestBed, TestBed } from '@angular/core/testing';
 
-describe('PremieresComponent', () => {
-  let component: PremieresComponent;
-  let fixture: ComponentFixture<PremieresComponent>;
-  let servicio: LandingPageService;
+import { LandingPageService } from './landing-page.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { SocialNetwork } from '../Landingpage/navbar-social/social-network';
+import { Movie } from '../models/movie.model';
+
+describe('LandingPageService', () => {
+  let service: LandingPageService;
+  let injector: TestBed;
+  let httpMock: HttpTestingController
+  let mockResponseRedes: SocialNetwork[] = [
+    {
+      "clase": "fab fa-facebook-f",
+      "estado": true,
+      "nombre": "Facebook",
+      "url": "https://www.facebook.com/wilson.otalvaro/"
+      },
+      {
+      "clase": "fab fa-twitter",
+      "estado": true,
+      "nombre": "Twitter",
+      "url": "https://twitter.com/"
+      },
+      {
+      "clase": "fab fa-youtube",
+      "estado": true,
+      "nombre": "youtube",
+      "url": "https://www.youtube.com/channel/UCGbYqevVy0itrqidAnRnEKw"
+      },
+      {
+      "clase": "fab fa-instagram",
+      "estado": true,
+      "nombre": "Instagram",
+      "url": "https://www.instagram.com/otalvaro.wilson/"
+      }
+  ]
+
   let mockResponsePeliculas: Movie [] = [
     {
     "cartelera": true,
@@ -121,43 +147,65 @@ describe('PremieresComponent', () => {
     }
     ]
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ PremieresComponent ],
-      imports:[HttpClientTestingModule],
-      providers: [LandingPageService],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
-    })
-    .compileComponents();
-  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PremieresComponent);
-    component = fixture.componentInstance;
-    servicio = component._landingService;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+
+      imports: [HttpClientTestingModule]
+    });
+    injector = getTestBed()
+    httpMock = injector.get(HttpTestingController)
+    service = TestBed.inject(LandingPageService);
   });
 
-  it('Debe crear el componente', () => {
-    expect(component).toBeTruthy();
+  it('Debe Crear el servicio', () => {
+    expect(service).toBeTruthy();
   });
 
-  it('Debe inyectar  el servicio', () => {
-    expect(servicio).toBeTruthy();
+  it ('debe llamar el metodo getSocialNetworks() y retornar las redes sociales',()=>{
+    service.getSocialNetworks().subscribe((redes)=>{
+      expect(redes.length).toBe(4)
+      expect(redes).toEqual(mockResponseRedes)
+    })
+    const req = httpMock.expectOne('https://cinemax-6bd7e-default-rtdb.firebaseio.com/RedesSociales.json')
+    expect(req.request.method).toBe('GET')
+    req.flush(mockResponseRedes)
+  })
+
+  it ('debe llamar el metodo getMovies() y retornar las peliculas',()=>{
+    service.getMovies().subscribe((peliculas)=>{
+      let estrenos = peliculas.filter(pelicula => !pelicula.cartelera  )
+      let carteleras = peliculas.filter(pelicula => pelicula.cartelera  )
+
+      expect(estrenos.length).toBeGreaterThanOrEqual(6)
+      expect(carteleras.length).toBeGreaterThanOrEqual(6)
+     
+    })
+    const req = httpMock.expectOne('https://cinemax-6bd7e-default-rtdb.firebaseio.com/Peliculas.json')
+    expect(req.request.method).toBe('GET')
+    req.flush(mockResponsePeliculas)
+  })
+
+  it('la variable formatos debe contener 4 opciones', () => {
+    let formatos: string[] = service.formatos
+
+    expect(formatos.length).toEqual(4)
   });
 
-  it('Debe llamar getMovies() de LandingPageService', async () => {
-    let obtenerPeliculas = spyOn(servicio, 'getMovies').and.returnValue(of(mockResponsePeliculas))
-    let fixture2 = TestBed.createComponent(PremieresComponent);
-    let compiled = fixture2.debugElement.nativeElement
-    fixture2.detectChanges()
-    component.ngOnInit()
-    expect(obtenerPeliculas).toHaveBeenCalled()
-    expect(compiled.querySelectorAll('.proximosEstrenos').length).toBe(6)
+  it('La variable horas debe contener 5 opciones', ()=>{
 
-    for(let i=0; i<component.peliculas.length; i++){
-      expect(component.peliculas[i].cartelera).toBeFalsy()
+    let horas: string[] = service.horas
+    
+    let misHoras : string [] = []
+    for (let i = 2; i<=10; i = i+2){
+      let hora = `${i}:00pm`
+      misHoras.push(hora)
     }
-  });
 
+    expect(horas.length).toEqual(5)
+
+    for (let j = 0; j<service.horas.length; j++){
+      expect(service.horas[j]).toEqual(misHoras[j])
+    }
+  })
 });
