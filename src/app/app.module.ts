@@ -14,6 +14,7 @@ import { CarouselComponent } from './Landingpage/carousel/carousel.component';
 import { FooterComponent } from './Landingpage/footer/footer.component';
 import { LandingPageService } from './services/landing-page.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [LandingPageService],
   bootstrap: [AppComponent]
