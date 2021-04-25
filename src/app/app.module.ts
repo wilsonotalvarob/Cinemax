@@ -12,6 +12,9 @@ import { WeeklyBilboardsComponent } from './Landingpage/weekly-bilboards/weekly-
 import { PremieresComponent } from './Landingpage/premieres/premieres.component';
 import { CarouselComponent } from './Landingpage/carousel/carousel.component';
 import { FooterComponent } from './Landingpage/footer/footer.component';
+import { LandingPageService } from './services/landing-page.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -30,9 +33,11 @@ import { FooterComponent } from './Landingpage/footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [LandingPageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
